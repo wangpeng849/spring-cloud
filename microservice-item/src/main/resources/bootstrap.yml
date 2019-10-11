@@ -1,0 +1,22 @@
+spring:
+      cloud:
+        config:
+          uri: http://127.0.0.1:7788/ #配中心地址
+          profile: dev #对应服务中的{profile}
+          label: master #对应的分支
+          discovery:
+            enabled: true
+            service-id: microservice-config-server  #注册中心的服务名！！！！！
+          name: microservice
+      eureka:
+        client:
+          service-url:
+            defaultZone: http://wangp:lingh@127.0.0.1:8100/eureka/,http://wangp:lingh@127.0.0.1:9100/eureka/
+          ###因为该应用为服务提供者，是eureka的一个客户端，需要注册到注册中心
+          register-with-eureka: true
+          ###是否需要从eureka上检索服务
+          fetch-registry: true
+        instance:
+          prefer-ip-address: true #将自己的ip地址注册到Eureka服务中
+          ip-address: 127.0.0.1
+          instance-id: ${spring.application.name}###${server.port} #指定实例id

@@ -1,0 +1,30 @@
+###����˿ں�
+server:
+  port: 9100
+
+###��������
+spring:
+  application:
+    name: app-eureka-center
+  security:
+    basic:
+      enable: true #����http bastic����֤
+    user: #�����û����˺���Ϣ
+      name: wangp
+      password: lingh
+
+eureka:
+  instance:
+#ע�����ĵ�ַ
+    hostname: 127.0.0.1
+###�ͻ��˵��õ�ַ
+  client:
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:8100/eureka/
+###�Ƿ��Լ�ע�ᵽEureka������,��Ϊ��Ӧ�ñ������ע�����ģ�����Ҫ��ע���Լ�����Ⱥ��ʱ��Ϊtrue��
+    register-with-eureka: true
+###�Ƿ��Eureka�л�ȡע����Ϣ,��Ϊ�Լ�Ϊע������,�����ڸ�Ӧ���еļ���������Ϣ
+    fetch-registry: true
+  server:
+    enable-self-preservation: false #�������ұ���ģʽ
+
